@@ -65,7 +65,7 @@ foreach ($Group in $GroupList)
 {
     # Obtenemos los usuarios contenidos en cada unos de los grupos de AD
     try{
-        $GroupId = (Get-MsolGroup  | where {$_.displayname -eq $Group.GrupoAD}).ObjectId
+        $GroupId = (Get-MsolGroup  | Where-Object {$_.displayname -eq $Group.GrupoAD}).ObjectId
         $GroupUsers = Get-MsolGroupMember -GroupObjectId $GroupId
         Add-Content -Path $LogFileNameFullPath -Value "[$([DateTime]::Now)] El grupo $($Group.GrupoAD) contiene $($GroupUsers.Count) usuario(s)"
     }
